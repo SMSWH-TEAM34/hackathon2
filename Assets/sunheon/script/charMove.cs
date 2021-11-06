@@ -12,9 +12,16 @@ public class charMove : MonoBehaviour
     //4 = back
     void start()
     {
-        staticInfo.rot = 1;
+        
     }
     void Update()
+    {
+        if(staticInfo.msgING == false)
+        {
+            move();
+        }
+    }
+    void move()
     {
         float speed = 5.0f * Time.deltaTime;
         float x = 0f;
