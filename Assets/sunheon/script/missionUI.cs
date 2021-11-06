@@ -23,11 +23,13 @@ public class missionUI : MonoBehaviour
         {
             missionInfo.SetActive(true);
             flag = true;
+            
         }
         else
         {
             missionInfo.SetActive(false);
             flag = false;
+            
         }
         
     }

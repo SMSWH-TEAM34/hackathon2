@@ -17,9 +17,9 @@ public class msg : MonoBehaviour
     public GameObject txt9;
     public GameObject ui;
     public GameObject Button;
+    public GameObject plate;
 
     public GameObject re;
-    private bool reFlag = true;
 
     public GameObject hwang;
     public GameObject main;
@@ -113,8 +113,10 @@ public class msg : MonoBehaviour
                 txt9.SetActive(false);
                 Button.SetActive(false);
                 missionUI.SetActive(true);
+                plate.SetActive(true);
                 staticInfo.mission = 1;
                 staticInfo.msgING = false;
+                staticInfo.msgnumber++;
                 break;
         }
         

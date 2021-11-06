@@ -14,7 +14,7 @@ public class mission2_player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //checkPos();
+        checkPos();
         if (GameObject.Find("cam1").GetComponent<mission2_camera>().canMove)
         {
             UpdateKeyboard();
@@ -32,12 +32,15 @@ public class mission2_player : MonoBehaviour
         else if (Input.GetKey(KeyCode.D)) { x = speed; }
         transform.Translate(x, 0.0f, z);
     }
-    /*
     private void checkPos()
     {
-        if(tranform.position.z > -5.0f)
+        if (transform.position.z > -5.0f)
         {
-            //labWall.SetActive(true);
+            labWall.SetActive(false);
         }
-    }*/
+        else
+        {
+            labWall.SetActive(true);
+        }
+    }
 }

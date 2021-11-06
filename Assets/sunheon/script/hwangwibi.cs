@@ -6,13 +6,14 @@ public class hwangwibi : MonoBehaviour
 {
     public GameObject ui;
 
-    public GameObject re;
-    private bool reFlag = true;
+    public GameObject answer;
     public GameObject txt9;
     public GameObject button;
 
     public GameObject hwang;
     public GameObject main;
+    public GameObject nono;
+    public GameObject yesyes;
     
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class hwangwibi : MonoBehaviour
 
     void OnMouseDown()
     {
-        staticInfo.msgING = true;
+        //staticInfo.msgING = true;
         if (staticInfo.mission == 0)
         {
             ui.SetActive(true);
@@ -36,22 +37,15 @@ public class hwangwibi : MonoBehaviour
         }
         if (staticInfo.mission == 1 && staticInfo.missionDone == false)
         {
-            if (reFlag)
-            {
-                reFlag = false;
+            
                 ui.SetActive(true);
+                button.SetActive(true);
+            yesyes.SetActive(true);
+            nono.SetActive(true);
                 hwang.SetActive(true);
-                re.SetActive(true);
+            answer.SetActive(true);
                 txt9.SetActive(false);
-            }
-            else
-            {
-                staticInfo.msgING = false;
-                CharFalse();
-                button.SetActive(false);
-                reFlag = true;
-            }
-
+            
         }
     }
     private void CharFalse()
