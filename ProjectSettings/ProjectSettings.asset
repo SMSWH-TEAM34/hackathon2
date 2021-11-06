@@ -650,6 +650,8 @@ PlayerSettings:
   cloudServicesEnabled:
     Build: 1
     Collab: 1
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -668,6 +670,6 @@ PlayerSettings:
   projectName: collabTest
   organizationId: wp05110_unity
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
   disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 0
