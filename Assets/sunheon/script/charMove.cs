@@ -8,11 +8,17 @@ public class charMove : MonoBehaviour
     Vector3 lookDirection;
     //1 = front
     //2 = left
-    //3 = right
-    //4 = back
+    //3 = back
+    //4 = right
+
+    public GameObject front;
+    public GameObject left;
+    public GameObject right;
+    public GameObject back;
+
     void start()
     {
-        
+        front.SetActive(true);
     }
     void Update()
     {
@@ -27,10 +33,34 @@ public class charMove : MonoBehaviour
         float x = 0f;
         float z = 0f;
 
-        if (Input.GetKey(KeyCode.W)) { z = speed; }
-        else if (Input.GetKey(KeyCode.S)) { z = -speed; }
-        else if (Input.GetKey(KeyCode.A)) { x = -speed; }
-        else if (Input.GetKey(KeyCode.D)) { x = speed; }
+        if (Input.GetKey(KeyCode.W)) {
+            z = speed;
+            front.SetActive(false);
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(true);
+        }
+        else if (Input.GetKey(KeyCode.S)) {
+            z = -speed;
+            front.SetActive(true);
+            left.SetActive(false);
+            right.SetActive(false);
+            back.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.A)) {
+            x = -speed;
+            front.SetActive(false);
+            left.SetActive(true);
+            right.SetActive(false);
+            back.SetActive(false);
+        }
+        else if (Input.GetKey(KeyCode.D)) {
+            x = speed;
+            front.SetActive(false);
+            left.SetActive(false);
+            right.SetActive(true);
+            back.SetActive(false);
+        }
         transform.Translate(x, 0.0f, z);
 
         /*if (Input.GetKey(KeyCode.A) ||

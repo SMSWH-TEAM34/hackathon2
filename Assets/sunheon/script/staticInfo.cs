@@ -10,6 +10,13 @@ public class staticInfo : MonoBehaviour
     public static bool reFlag;
     public static bool missionDone = false;
     public static bool missionInfo = false;
+
+    public static int dir = 1;
+    //w 1
+    //a 2
+    //s 3
+    //d 4
+
     // Start is called before the first frame update
     void Start()
     {
