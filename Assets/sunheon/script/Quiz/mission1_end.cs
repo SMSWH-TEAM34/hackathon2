@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class mission1_end : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class mission1_end : MonoBehaviour
                 button.SetActive(false);
                 hwang.SetActive(false);
                 //staticInfo.msgING = false;
-                //여기서 맵으로 씬 체인지
+                SceneManager.LoadScene("WorldMap_2");
                 flag=1;
                 break;
 
