@@ -29,7 +29,7 @@ public class hwangwibi : MonoBehaviour
 
     void OnMouseDown()
     {
-        //staticInfo.msgING = true;
+        staticInfo.msgING = true;
         if (staticInfo.mission == 0)
         {
             ui.SetActive(true);

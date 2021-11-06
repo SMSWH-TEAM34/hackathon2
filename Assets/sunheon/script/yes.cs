@@ -8,6 +8,10 @@ public class yes : MonoBehaviour
     public GameObject yesyes;
     public GameObject button;
     public GameObject hwang;
+    public GameObject charr;
+
+
+    public GameObject start;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +28,8 @@ public class yes : MonoBehaviour
         button.SetActive(false);
         nono.SetActive(false);
         yesyes.SetActive(false);
+        start.SetActive(true);
+        hwang.SetActive(true);
+        charr.SetActive(false);
     }
 }
