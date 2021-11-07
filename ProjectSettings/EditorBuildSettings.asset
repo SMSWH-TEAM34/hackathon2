@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: b891aa88bd3ffaa41bc8043faecf5f09
+  - enabled: 1
+    path: Assets/Scenes/junghyun.unity
+    guid: cb0b84f8bdfe3d940b6665c7a8e11f44
   m_configObjects: {}
