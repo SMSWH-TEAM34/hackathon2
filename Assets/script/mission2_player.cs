@@ -9,7 +9,7 @@ public class mission2_player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
+        
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -26,15 +26,27 @@ public class mission2_player : MonoBehaviour
         float x = 0f;
         float z = 0f;
         
-        if (Input.GetKey(KeyCode.W)) { z = speed; }
-        else if (Input.GetKey(KeyCode.S)) { z = -speed; }
-        else if (Input.GetKey(KeyCode.A)) { x = -speed; }
-        else if (Input.GetKey(KeyCode.D)) { x = speed; }
+        if (Input.GetKey(KeyCode.W)) {
+            transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 180, 0); 
+            z = speed; 
+        }
+        else if (Input.GetKey(KeyCode.S)) {
+            transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 0, 0);
+            z = -speed; 
+        }
+        else if (Input.GetKey(KeyCode.A)) {
+            transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 90, 0);
+            x = -speed; 
+        }
+        else if (Input.GetKey(KeyCode.D)) {
+            transform.GetChild(0).transform.rotation = Quaternion.Euler(0, 270, 0);
+            x = speed; 
+        }
         transform.Translate(x, 0.0f, z);
     }
     private void checkPos()
     {
-        if (transform.position.z > -5.0f)
+        if (transform.position.z > -5f)
         {
             labWall.SetActive(false);
         }

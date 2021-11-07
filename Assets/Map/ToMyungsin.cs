@@ -19,11 +19,12 @@ public class ToMyungsin : MonoBehaviour
     }
     public void myungsinClikced()
     {
-        SceneManager.LoadScene("junghyun");
+        SceneManager.LoadScene("Mission2");
     }
 
     public void baekClicked()
     {
+        Debug.Log("baekjunyun");
         SceneManager.LoadScene("Mission3");
     }
 

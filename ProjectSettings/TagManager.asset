@@ -6,10 +6,20 @@ TagManager:
   tags:
   - npc
   - clue
-  - lab1
-  - lab2
+  - Item
+  - beaker
+  - pipette
+  - redPotion
+  - bluePotion
+  - greenPotion
+  - glasses
+  - magentaPotion
   - col
   - myungsin
+  - cam
+  - yellowPotion
+  - book1
+  - book2
   - baek
   layers:
   - Default
