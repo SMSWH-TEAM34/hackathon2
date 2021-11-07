@@ -55,14 +55,14 @@ public class mission2_camera : MonoBehaviour
     };
 
     private string[] script1 = {
-        "조제하는 데 필요한 시약이 아닌 것 같아요.",
+        "조제하는 데 필요한 시약이 없는 거 같아요...",
         "찾아주셨군요! 감사합니다. 그럼...",
         "???: 여기로 와주세요!!!!",
         "이 소리는 백주년 기념관에서 들려오는 거 같아요! 한 번 가보시는게 좋을 거 같아요!!",
     };
 
     private string[] item = { "beaker", "magentaPotion", "greenPotion", "yellowPotion", "redPotion", "pipette", "glasses", "book1", "book2" };
-    private string[] answer1 = { "beaker","pipette" };
+    private string[] answer1 = { "beaker","pipette","glasses" };
     private string[] answer2 = { "magentaPotion", "greenPotion" };
     private Dictionary<string, GameObject> invenInfo = new Dictionary<string, GameObject>();
     private Dictionary<string, string> itemInfo = new Dictionary<string, string>(){
@@ -179,7 +179,7 @@ public class mission2_camera : MonoBehaviour
                 canMove = true;
                 panel.SetActive(false);
                 panel1.SetActive(true);
-                missionMsg.text = "비커, 스포이드 찾아주기";
+                missionMsg.text = "비커, 스포이드, 보안경 찾아주기";
             }
         }
         else if(phase == 1)//
@@ -265,7 +265,7 @@ public class mission2_camera : MonoBehaviour
         }
         tmp.transform.GetChild(0).GetComponent<mission_btn>().tag = item.transform.tag;
         Image pic = tmp.transform.GetChild(0).GetComponent<Image>();
-        pic.sprite = Resources.Load("T_Icon_"+item.transform.tag, typeof(Sprite)) as Sprite;
+        pic.sprite = Resources.Load(item.transform.tag, typeof(Sprite)) as Sprite;
     }
     public void eraseInven()
     {
@@ -279,7 +279,16 @@ public class mission2_camera : MonoBehaviour
         panel2.SetActive(true);
         curItemTag = tag;
         itemMsg.text = itemInfo[tag];
-        itemImg.sprite = Resources.Load(tag, typeof(Sprite)) as Sprite;
+        string name = "";
+        if ((tag == "book1") || (tag == "book2"))
+        {
+            name = tag + "_detail";
+        }
+        else
+        {
+            name = tag;
+        }
+        itemImg.sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
     }
 
     public void exitItemPanel(){

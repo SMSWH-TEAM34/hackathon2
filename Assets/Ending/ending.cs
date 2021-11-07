@@ -5,6 +5,7 @@ using UnityEngine;
 public class ending : MonoBehaviour
 {
     public GameObject msg;
+    public GameObject effect;
 
     float timer;
     float waitingTime;
@@ -23,6 +24,7 @@ public class ending : MonoBehaviour
         if (timer > waitingTime)
         {
             msg.SetActive(true);
+            effect.SetActive(true);
         }
     }
 }

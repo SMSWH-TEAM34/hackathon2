@@ -6,6 +6,11 @@ public class End_msg : MonoBehaviour
 {
     public GameObject nowmsg;
     public GameObject nextmsg;
+
+    public GameObject hwang;
+    public GameObject sook;
+    public GameObject canvas;
+    public GameObject finishUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +30,12 @@ public class End_msg : MonoBehaviour
 
     public void OnclickExit()
     {
-        Debug.Log("finish");
-        Application.Quit();
+        
+        hwang.SetActive(false);
+        canvas.SetActive(false);
+        sook.SetActive(true);
+        finishUI.SetActive(true);
+
+
     }
 }
