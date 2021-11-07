@@ -13,6 +13,7 @@ public class mission2_camera : MonoBehaviour
     public Text missionMsg;//미션 텍스트
     public Text itemMsg;//아이템 텍스트
     public Image itemImg;//아이템 이미지
+    public GameObject book_detail;//책이미지창
 
     public GameObject player;
     public GameObject npc;
@@ -38,7 +39,7 @@ public class mission2_camera : MonoBehaviour
     };
        
     private string[] script = { 
-        "실험실에 필요한 물품들을 더 찾아주세요!",
+        "실험실에 필요한 물품만 주세요!",
         "실험실에 있던 물품을 찾아서 건네준다.",
         "여기요...", 
         "네 감사합니다. 잠시만요.", 
@@ -50,12 +51,12 @@ public class mission2_camera : MonoBehaviour
         "여기는 지금 명신관입니다.",
         "어! 우리 학교에도 명신관이 있어요! 근데 좀 달라보이는데..",
         "아무튼 집으로 가고 싶은데 방법을 좀 알려주세요!",
-        "음.. 그러면 한 가지 부탁을 들어주실 수 있나요? 혈흔 검출 시약을 만들어야 되는데 필요한 시약들을 찾아주세요!",
+        "음.. 그러면 한 가지 부탁을 들어주실 수 있나요? ",
         "혈흔 검출 시약을 만들어야 되는데 필요한 시약들을 찾아주세요!"
     };
 
     private string[] script1 = {
-        "조제하는 데 필요한 시약이 없는 거 같아요...",
+        "조제하는 데 필요한 시약들만 주세요...",
         "찾아주셨군요! 감사합니다. 그럼...",
         "???: 여기로 와주세요!!!!",
         "이 소리는 백주년 기념관에서 들려오는 거 같아요! 한 번 가보시는게 좋을 거 같아요!!",
@@ -73,8 +74,8 @@ public class mission2_camera : MonoBehaviour
         { "redPotion","빨간 색상의 약물이 든 플라스크이다." },
         { "pipette","약물을 옮길 때 사용하는 스포이드이다." },
         { "glasses", "실험할 때 눈을 보호해주는 보안경이다." },
-        { "book1" , "국립과학수사 연구원의 보고서이다."},
-        { "book2", "미대생의 서적인 거 같다." },
+        { "book1" , "미대생의 서적인 거 같다."},
+        { "book2", "국립과학수사 연구원의 보고서이다." },
      };
     private GameObject slot;
 
@@ -163,6 +164,7 @@ public class mission2_camera : MonoBehaviour
     }
     public void nextMsg()
     {
+        Debug.Log(idx);
         if(phase == 0)//스토리 시작 상황
         {
             if (idx > 4)
@@ -186,7 +188,7 @@ public class mission2_camera : MonoBehaviour
         {
             if (idx > 12)
             {
-                msg.text = "실험실에 필요한 물품만 찾아주세요!";
+                msg.text = "실험실에 필요한 물품만 주세요!";
                 canMove = true;
                 panel.SetActive(false);
                 return;
@@ -205,7 +207,7 @@ public class mission2_camera : MonoBehaviour
         {
             if (idx > 2)
             {
-                msg.text = "실험실에 필요한 물품만 찾아주세요!";
+                msg.text = "실험실에 필요한 물품만 주세요!";
                 canMove = true;
                 panel.SetActive(false);
                 return;
@@ -217,19 +219,19 @@ public class mission2_camera : MonoBehaviour
                 canMove = true;
                 panel.SetActive(false);
                 panel1.SetActive(true);
-                //SceneManager.LoadScene(worldMap3);
+                SceneManager.LoadScene("WorldMap_3");
             }
         }
     }
     public bool checkMission() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             bool tmp = invenInfo.ContainsKey(answer1[i]);
             if (!tmp)
             {
                 return false;
             }
         }
-        return true;
+        return invenInfo.Count == 3;
     }
     public bool checkMission1()
     {
@@ -241,7 +243,7 @@ public class mission2_camera : MonoBehaviour
                 return false;
             }
         }
-        return true;
+        return invenInfo.Count == 2;
     }
     public void plusInven(GameObject item)
     {
@@ -261,7 +263,7 @@ public class mission2_camera : MonoBehaviour
         }
         else
         {
-            tmp.transform.SetParent(inven1.transform);
+            return;
         }
         tmp.transform.GetChild(0).GetComponent<mission_btn>().tag = item.transform.tag;
         Image pic = tmp.transform.GetChild(0).GetComponent<Image>();
@@ -283,15 +285,19 @@ public class mission2_camera : MonoBehaviour
         if ((tag == "book1") || (tag == "book2"))
         {
             name = tag + "_detail";
+            book_detail.SetActive(true);
+            book_detail.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
         }
         else
         {
+            book_detail.SetActive(false);
             name = tag;
+            itemImg.sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
         }
-        itemImg.sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
     }
 
     public void exitItemPanel(){
+        book_detail.SetActive(false);
         canMove = true;
         panel2.SetActive(false);
     }
