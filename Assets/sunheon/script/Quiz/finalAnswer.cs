@@ -22,7 +22,7 @@ public class finalAnswer : MonoBehaviour
     public void OnbuttonClickd()
     {
         wrong.SetActive(false);
-        hwang.SetActive(false);
+        hwang.SetActive(true);
         fin.SetActive(true);
         
     }
