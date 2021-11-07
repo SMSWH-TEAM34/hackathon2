@@ -31,4 +31,6 @@ public class ToMyungsin : MonoBehaviour
     {
         ui.SetActive(false);
     }
+    
+
 }

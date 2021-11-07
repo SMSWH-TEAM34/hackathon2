@@ -69,5 +69,11 @@ public class mapCharMove : MonoBehaviour
             Debug.Log("myungsin");
             UI.SetActive(true);
         }
+
+        if (coll.collider.gameObject.CompareTag("baek"))
+        {
+            Debug.Log("baekjunyun");
+            UI.SetActive(true);
+        }
     }
 }

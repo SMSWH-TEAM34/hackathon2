@@ -9,6 +9,9 @@ public class Mission3_Script : MonoBehaviour
     public GameObject panel;
     public GameObject panel1;
     public GameObject newspaper;
+    public GameObject newspaper2;
+    public GameObject album;
+    public GameObject cats;
     public GameObject letter;
     public GameObject inputfield;
     public InputField inputfieldd;
@@ -19,18 +22,22 @@ public class Mission3_Script : MonoBehaviour
     public Text correctMsgg;
     public Text msg;
     public Text missionMsg;
+    public Text catMsg;
     public GameObject player;
     public int idx = -1;
 
     private RaycastHit hit; //마우스에 클릭된 객체
-    private string[] script = { "충성!",
-        "송이야 만나서 반가워~",
-        "널 기다라고 있었어",
-        "내 이름을 맞추면 네가 필요로 하는 걸 줄게!"
+    private string[] hi = { "충성!",
+        "만나서 정말 반갑다!",
+        "이렇게 날 오래 기다리게 하면 어떡합니까!",
+        "내 이름을 맞추면 집으로 보내드리겠습니다!"
     };
-    private string[] wrong = { "...", "땡! 틀렸어", "다시 한번 잘 살펴봐" };
-    private string[] correct = { "...", "정답이야", "자 이걸 가지고 가렴" };
-
+    private string[] wrong = { "...", "땡! 틀렸습니다!", "다시 한번 잘 살펴봅니다!" };
+    private string[] correct = { "...", "정답이다", "역시 숙명인! 이렇게 빨리 찾아낼줄은..!!",
+                            "약속대로 집에 보내드리겠습니다!",
+                            "순헌 황귀비님께서 돌려보내 주실 겁니다! 만나서 반가웠다!",
+                            "순헌 황귀비님~~!!" };
+    private string[] catmsgs = { "안녕 나는 태평이야~", "츄르 있어?"};
 
     // Update is called once per frame
     void FixedUpdate()
@@ -53,7 +60,7 @@ public class Mission3_Script : MonoBehaviour
                     Debug.Log("npc");
                     if (!panel.activeSelf)
                     {
-                        player.GetComponent<Mission3_CharacterControl>().canMove = false;
+                        player.GetComponent<m3_move>().canMove = false;
                         panel.SetActive(true);
                     }
                 }
@@ -75,20 +82,37 @@ public class Mission3_Script : MonoBehaviour
                 if (obj.name == "NewsPaper")
                 {
                     newspaper.SetActive(true);
-                    player.GetComponent<Mission3_CharacterControl>().canMove = false;
+                    player.GetComponent<m3_move>().canMove = false;
                 }
                 if (obj.name == "Letter")
                 {
                     letter.SetActive(true);
-                    player.GetComponent<Mission3_CharacterControl>().canMove = false;
+                    player.GetComponent<m3_move>().canMove = false;
                 }
                 if(obj.name == "mission")
                 {
-                    Debug.Log("click mission");
                     inputfield.SetActive(true);
                     button.SetActive(true);
-                    player.GetComponent<Mission3_CharacterControl>().canMove = false;
+                    player.GetComponent<m3_move>().canMove = false;
                 }
+                if (obj.name == "NewsPaper2")
+                {
+                    newspaper2.SetActive(true);
+                    player.GetComponent<m3_move>().canMove = false;
+                }
+                if (obj.name == "Album")
+                {
+                    album.SetActive(true);
+                    player.GetComponent<m3_move>().canMove = false;
+                }
+                if (obj.name == "Cat")
+                {
+                    idx = 0;
+                    cats.SetActive(true);
+                    player.GetComponent<m3_move>().canMove = false;
+                    
+                }
+
 
             }
 
@@ -97,10 +121,9 @@ public class Mission3_Script : MonoBehaviour
 
     public void tryAnswer()
     {
-        Debug.Log("click mission");
         inputfield.SetActive(true);
         button.SetActive(true);
-        player.GetComponent<Mission3_CharacterControl>().canMove = false;
+        player.GetComponent<m3_move>().canMove = false;
     }
     public void checkAnswer()
     {
@@ -110,12 +133,10 @@ public class Mission3_Script : MonoBehaviour
 
         if (inputfieldd.text == "박기은")
         {
-            //correctmsg active
             correctAnswer();
         }
         else
         {
-            //wrong msg panel activ
             wrongAnswer();
         }
     }
@@ -126,7 +147,7 @@ public class Mission3_Script : MonoBehaviour
 
         if (!wrongMsg.activeSelf)
         {
-            player.GetComponent<Mission3_CharacterControl>().canMove = false;
+            player.GetComponent<m3_move>().canMove = false;
             wrongMsg.SetActive(true);
         }
     }
@@ -136,25 +157,43 @@ public class Mission3_Script : MonoBehaviour
         idx = 0;
         if (!correctMsg.activeSelf)
         {
-            player.GetComponent<Mission3_CharacterControl>().canMove = false;
+            player.GetComponent<m3_move>().canMove = false;
             correctMsg.SetActive(true);
+        }
+    }
+
+    public void nextcatMsg()
+    {
+        
+        if (idx+1 <= catmsgs.Length)
+        {
+            Debug.Log(idx);
+            catMsg.text = catmsgs[idx];
+            idx++;
+
+        }
+        else
+        {
+            player.GetComponent<m3_move>().canMove = true;
+            cats.SetActive(false);
         }
     }
 
     public void nextMsg()
     {
-        idx++;
 
-        if (idx < 4)
+        if (idx+1 < hi.Length)
         {
-            msg.text = script[idx];
+            idx++;
+            msg.text = hi[idx];
+            
         }
         else 
         {
+            player.GetComponent<m3_move>().canMove = true;
             panel.SetActive(false);
             panel1.SetActive(true);
             missionMsg.text = "이름 맞추기";
-            player.GetComponent<Mission3_CharacterControl>().canMove = true;
         }  
     }
 
@@ -162,13 +201,16 @@ public class Mission3_Script : MonoBehaviour
     {
         Debug.Log(idx);
 
-       if(idx < 3)
+       if(idx+1 < wrong.Length)
         {
-            wrongMsgg.text = wrong[idx++];
+            idx++;
+            wrongMsgg.text = wrong[idx];
         }
         else
         {
+            player.GetComponent<m3_move>().canMove = true;
             wrongMsg.SetActive(false);
+
         }
     }
 
@@ -176,14 +218,14 @@ public class Mission3_Script : MonoBehaviour
     {
         Debug.Log(idx);
 
-        if (idx < 3)
+        if (idx < correct.Length)
         {
             correctMsgg.text = correct[idx++];
         }
         else
         {
             correctMsg.SetActive(false);
-            //이후에 다음씬 이동 등을 정의...
+            //이후에 다음씬 이동 등을 정의...-----------------------------------!!!
         }
     }
   
